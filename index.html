@@ -1037,7 +1037,7 @@ async function gerarCobrancaPix(){
   btn.disabled = true; btn.textContent = 'Gerando cobrança…';
 
   try {
-    const resp = await fetch('/api/asaas-pix-criar', {
+    const resp = await fetch('/asaas-pix-criar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nome, cpf, telefone, bairro: cart[0]?.bairro, itens, total })
@@ -1074,7 +1074,7 @@ function startPixPolling(){
   pixPollTimer = setInterval(async () => {
     if (!pixPaymentId) return;
     try {
-      const resp = await fetch(`/api/asaas-pix-status?id=${encodeURIComponent(pixPaymentId)}`);
+      const resp = await fetch(`/asaas-pix-status?id=${encodeURIComponent(pixPaymentId)}`);
       const data = await resp.json();
       if (resp.ok && data.pago){
         stopPixPolling();
