@@ -486,67 +486,15 @@ tailwind.config = {
         </button>
       </div>
       <div id="cartItemsContainer" class="max-h-72 overflow-y-auto space-y-3 pr-1"></div>
-
-      <!-- Passo 1: resumo + escolha da forma de pagamento -->
-      <div id="cartCheckoutBox" class="border-t border-brand-border pt-4 mt-4 space-y-3">
+      <div class="border-t border-brand-border pt-4 mt-4 space-y-3">
         <div class="flex justify-between items-center text-sm font-bold">
           <span class="text-zinc-300">Total estimado:</span>
           <span id="cartTotalPrice" class="text-brand-yellow text-lg font-black">R$ 0,00</span>
         </div>
-        <button id="payPixBtn" class="w-full bg-brand-yellow hover:bg-brand-yellowDark disabled:bg-zinc-700 disabled:cursor-not-allowed text-brand-black font-extrabold text-sm py-3.5 rounded-xl uppercase tracking-wider flex items-center justify-center gap-2 transition">
-          <svg class="icon text-lg" aria-hidden="true"><use href="#i-bolt"/></svg>
-          <span>Pagar agora com Pix</span>
-        </button>
         <button id="checkoutCartBtn" class="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-zinc-700 disabled:cursor-not-allowed text-white font-extrabold text-sm py-3.5 rounded-xl uppercase tracking-wider flex items-center justify-center gap-2 transition">
           <svg class="icon text-lg" aria-hidden="true"><use href="#i-whatsapp"/></svg>
-          <span>Combinar pelo WhatsApp</span>
+          <span>Enviar sacola pelo WhatsApp</span>
         </button>
-      </div>
-
-      <!-- Passo 2: dados do cliente para gerar a cobrança Pix -->
-      <div id="pixFormBox" class="hidden border-t border-brand-border pt-4 mt-4 space-y-3">
-        <button id="pixBackBtn" type="button" class="text-xs text-zinc-400 hover:text-white flex items-center gap-1">
-          <svg class="icon" style="width:12px;height:12px" aria-hidden="true"><use href="#i-back"/></svg> Voltar
-        </button>
-        <p class="text-xs text-zinc-400">Precisamos desses dados para emitir a cobrança Pix.</p>
-        <div class="space-y-2">
-          <label class="sr-only" for="pixNome">Nome completo</label>
-          <input id="pixNome" type="text" placeholder="Nome completo" autocomplete="name"
-            class="w-full bg-brand-black border border-brand-border rounded-xl px-3 py-2.5 text-sm text-white placeholder-zinc-500">
-          <label class="sr-only" for="pixCpf">CPF</label>
-          <input id="pixCpf" type="text" inputmode="numeric" placeholder="CPF (somente números)" autocomplete="off" maxlength="14"
-            class="w-full bg-brand-black border border-brand-border rounded-xl px-3 py-2.5 text-sm text-white placeholder-zinc-500">
-          <label class="sr-only" for="pixTelefone">WhatsApp</label>
-          <input id="pixTelefone" type="tel" placeholder="WhatsApp (DDD + número)" autocomplete="tel"
-            class="w-full bg-brand-black border border-brand-border rounded-xl px-3 py-2.5 text-sm text-white placeholder-zinc-500">
-        </div>
-        <button id="pixGerarBtn" class="w-full bg-brand-yellow hover:bg-brand-yellowDark disabled:bg-zinc-700 disabled:cursor-not-allowed text-brand-black font-extrabold text-sm py-3.5 rounded-xl uppercase tracking-wider transition">
-          Gerar QR Code Pix
-        </button>
-      </div>
-
-      <!-- Passo 3: QR Code / status do pagamento -->
-      <div id="pixResultBox" class="hidden border-t border-brand-border pt-4 mt-4 space-y-3 text-center">
-        <div id="pixWaiting">
-          <img id="pixQrImg" src="" alt="QR Code Pix para pagamento" class="w-44 h-44 mx-auto rounded-xl border border-brand-border bg-white p-1">
-          <p class="text-xs text-zinc-400 mt-2">Escaneie no app do seu banco ou copie o código abaixo.</p>
-          <div class="flex items-center gap-2 mt-2">
-            <label class="sr-only" for="pixCopiaCola">Código Pix copia e cola</label>
-            <input id="pixCopiaCola" type="text" readonly class="flex-1 min-w-0 bg-brand-black border border-brand-border rounded-xl px-3 py-2.5 text-[11px] text-zinc-300 truncate">
-            <button id="pixCopiarBtn" type="button" class="flex-shrink-0 bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold px-3 py-2.5 rounded-xl">Copiar</button>
-          </div>
-          <p id="pixStatusMsg" class="text-xs text-brand-yellow font-bold mt-3 flex items-center justify-center gap-2" role="status" aria-live="polite">
-            <span class="pulse-dot inline-block w-2 h-2 rounded-full bg-brand-yellow"></span> Aguardando pagamento…
-          </p>
-          <button id="pixCancelarBtn" type="button" class="text-xs text-zinc-400 hover:text-white underline mt-2">Cancelar e voltar</button>
-        </div>
-        <div id="pixConfirmado" class="hidden">
-          <p class="text-emerald-400 font-black text-sm">Pagamento confirmado! 🎉</p>
-          <p class="text-xs text-zinc-400 mt-1">Agora é só avisar a loja para prepararmos seu pedido.</p>
-          <button id="pixAvisarLojaBtn" type="button" class="w-full mt-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm py-3.5 rounded-xl uppercase tracking-wider flex items-center justify-center gap-2">
-            <svg class="icon text-lg" aria-hidden="true"><use href="#i-whatsapp"/></svg> Avisar a loja no WhatsApp
-          </button>
-        </div>
       </div>
     </div>
   </div>
@@ -597,7 +545,6 @@ const Store = {
 
 /* ---------------- Estado ---------------- */
 let products = [], categories = [], cart = [];
-let pixPaymentId = null, pixPollTimer = null;
 let filters = { q:'', size:null, cat:'Todos', showSoldOut:false, sort:'rel' };
 let modalProduct = null, modalSize = null, modalBairro = BAIRROS[0];
 let editingId = null, lastFocused = null;
@@ -631,7 +578,6 @@ function closeModal(el){
   el.classList.add('hidden');
   document.body.classList.remove('modal-open');
   if (el.id === 'productModal' && location.hash.startsWith('#/produto/')) history.pushState('', '', location.pathname);
-  if (el.id === 'cartModal') stopPixPolling();
   if (lastFocused) lastFocused.focus();
 }
 document.addEventListener('keydown', e => {
@@ -992,115 +938,6 @@ function checkoutCart(){
   window.open(waLink(msg), '_blank');
 }
 
-/* ---------------- Pagamento por Pix (Asaas) ----------------
-   O backend (pasta /api, funções serverless na Vercel) fala com o
-   Asaas usando a chave guardada em API_ASAAS. Aqui só chamamos
-   nossos próprios endpoints — a chave nunca aparece no navegador. */
-function onlyDigits(v){ return String(v || '').replace(/\D/g, ''); }
-
-function showCartStep(step){ // 'cart' | 'pixForm' | 'pixResult'
-  $('cartCheckoutBox').classList.toggle('hidden', step !== 'cart');
-  $('pixFormBox').classList.toggle('hidden', step !== 'pixForm');
-  $('pixResultBox').classList.toggle('hidden', step !== 'pixResult');
-}
-
-function openPixForm(){
-  if (!cart.length) return;
-  showCartStep('pixForm');
-  $('pixNome').focus();
-}
-
-function backFromPixForm(){
-  stopPixPolling();
-  showCartStep('cart');
-}
-
-async function gerarCobrancaPix(){
-  const nome = $('pixNome').value.trim();
-  const cpf = onlyDigits($('pixCpf').value);
-  const telefone = onlyDigits($('pixTelefone').value);
-
-  if (nome.length < 3) return toast('Informe seu nome completo.');
-  if (cpf.length !== 11) return toast('Informe um CPF válido (11 dígitos).');
-  if (!cart.length) return toast('Sua sacola está vazia.');
-
-  let total = 0;
-  const itens = cart.map(i => {
-    const p = products.find(x => x.id === i.id); if (!p) return null;
-    const preco = finalPrice(p);
-    total += preco * i.qty;
-    return { nome: p.name, tamanho: i.size, qty: i.qty, precoUnit: preco };
-  }).filter(Boolean);
-  if (!itens.length) return toast('Sua sacola está vazia.');
-
-  const btn = $('pixGerarBtn');
-  btn.disabled = true; btn.textContent = 'Gerando cobrança…';
-
-  try {
-    const resp = await fetch('/asaas-pix-criar', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, cpf, telefone, bairro: cart[0]?.bairro, itens, total })
-    });
-    const data = await resp.json();
-    if (!resp.ok) throw new Error(data.error || 'Não foi possível gerar o Pix.');
-
-    pixPaymentId = data.paymentId;
-    $('pixQrImg').src = 'data:image/png;base64,' + data.qrCodeBase64;
-    $('pixCopiaCola').value = data.copiaECola;
-    $('pixWaiting').classList.remove('hidden');
-    $('pixConfirmado').classList.add('hidden');
-    $('pixStatusMsg').innerHTML = '<span class="pulse-dot inline-block w-2 h-2 rounded-full bg-brand-yellow"></span> Aguardando pagamento…';
-    showCartStep('pixResult');
-    startPixPolling();
-  } catch (err) {
-    toast(err.message || 'Erro ao gerar o Pix. Tente novamente.');
-  } finally {
-    btn.disabled = false; btn.textContent = 'Gerar QR Code Pix';
-  }
-}
-
-function copiarPixCode(){
-  const val = $('pixCopiaCola').value; if (!val) return;
-  if (navigator.clipboard?.writeText){
-    navigator.clipboard.writeText(val).then(()=>toast('Código Pix copiado.')).catch(()=>toast('Não foi possível copiar.'));
-  } else {
-    $('pixCopiaCola').select(); document.execCommand('copy'); toast('Código Pix copiado.');
-  }
-}
-
-function startPixPolling(){
-  stopPixPolling();
-  pixPollTimer = setInterval(async () => {
-    if (!pixPaymentId) return;
-    try {
-      const resp = await fetch(`/asaas-pix-status?id=${encodeURIComponent(pixPaymentId)}`);
-      const data = await resp.json();
-      if (resp.ok && data.pago){
-        stopPixPolling();
-        $('pixWaiting').classList.add('hidden');
-        $('pixConfirmado').classList.remove('hidden');
-        cart = []; saveCart(); renderCart();
-      }
-    } catch (e) { /* tenta de novo no próximo ciclo */ }
-  }, 5000);
-}
-
-function stopPixPolling(){
-  if (pixPollTimer){ clearInterval(pixPollTimer); pixPollTimer = null; }
-}
-
-function cancelarPix(){
-  stopPixPolling();
-  pixPaymentId = null;
-  showCartStep('cart');
-}
-
-function avisarLojaWhatsapp(){
-  const msg = `Olá, Top Tênis Anápolis! Acabei de pagar meu pedido via Pix (código ${pixPaymentId}). Pode preparar para retirada/entrega?`;
-  window.open(waLink(msg), '_blank');
-}
-
 /* ---------------- Ligações de UI ---------------- */
 function bindUI(){
   let deb;
@@ -1128,14 +965,8 @@ function bindUI(){
     openProduct(b.dataset.open);
   });
 
-  $('cartBtn').addEventListener('click', () => { renderCart(); showCartStep('cart'); openModal($('cartModal')); });
+  $('cartBtn').addEventListener('click', () => { renderCart(); openModal($('cartModal')); });
   $('checkoutCartBtn').addEventListener('click', checkoutCart);
-  $('payPixBtn').addEventListener('click', openPixForm);
-  $('pixBackBtn').addEventListener('click', backFromPixForm);
-  $('pixGerarBtn').addEventListener('click', gerarCobrancaPix);
-  $('pixCopiarBtn').addEventListener('click', copiarPixCode);
-  $('pixCancelarBtn').addEventListener('click', cancelarPix);
-  $('pixAvisarLojaBtn').addEventListener('click', avisarLojaWhatsapp);
   $('cartItemsContainer').addEventListener('click', e => {
     const q = e.target.closest('[data-qty]'), r = e.target.closest('[data-remove]');
     if (q){
