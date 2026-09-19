@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Tênis Anápolis | Vitrine Digital — tênis pronta entrega em Anápolis-GO</title>
+
+<meta name="description" content="Vitrine digital da Top Tênis Anápolis. Filtre pela sua numeração, veja o que está em estoque pronta entrega e feche o pedido pelo WhatsApp.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://toptenisanapolis.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Top Tênis Anápolis | Vitrine Digital">
+<meta property="og:description" content="Filtre pelo seu número, veja o estoque real e feche pelo WhatsApp. Entrega no mesmo dia em Anápolis-GO.">
+<meta property="og:locale" content="pt_BR">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23FFD700'/><text x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%230A0A0A'>TT</text></svg>">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: { brand: { yellow:'#FFD700', yellowDark:'#E6C200', black:'#0A0A0A', cardBg:'#141414', cardHover:'#1A1A1A', border:'#2E2E2E' } },
+    fontFamily: { sans:['Inter','sans-serif'], heading:['Montserrat','sans-serif'] }
+  }}
+}
+</script>
+
+<style>
+  body{ background:#0A0A0A; color:#f4f4f5; font-family:'Inter',sans-serif; -webkit-tap-highlight-color:transparent; }
+  .font-heading{ font-family:'Montserrat',sans-serif; }
+  .hide-scrollbar::-webkit-scrollbar{ display:none; }
+  .hide-scrollbar{ -ms-overflow-style:none; scrollbar-width:none; }
+  @keyframes pulse-yellow{ 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.1)} }
+  .pulse-dot{ animation:pulse-yellow 2s cubic-bezier(.4,0,.6,1) infinite; }
+  /* A11Y: foco visível em tudo que é operável por teclado */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+    outline:3px solid #FFD700; outline-offset:2px; border-radius:10px;
+  }
+  .icon{ width:1em; height:1em; display:inline-block; vertical-align:-.125em; fill:currentColor; }
+  body.modal-open{ overflow:hidden; }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none!important; transition:none!important; } }
+  .sr-only{ position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+
+  /* Sticky crítico */
+  header { position:sticky; top:0; z-index:40; }
+
+  /* Modal de produto — independente do Tailwind */
+  #productModal { position:fixed; inset:0; z-index:50; background:rgba(0,0,0,.8);
+    backdrop-filter:blur(4px); overflow-y:auto; display:flex; align-items:center; justify-content:center; padding:12px; }
+  #productModal.hidden { display:none; }
+  #productModal > div { min-height:0 !important; padding:0 !important; width:100%; display:flex;
+    align-items:center; justify-content:center; }
+  [data-modal-box] { background:#141414; border:1px solid #2E2E2E; border-radius:16px;
+    max-width:400px !important; width:100%; box-shadow:0 25px 50px rgba(0,0,0,.5); position:relative;
+    margin:0 auto !important; max-height:calc(100dvh - 24px); display:flex; flex-direction:column; overflow:hidden; }
+  #modalContent { padding:16px; display:flex; flex-direction:column; gap:12px;
+    overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+
+  /* Imagem: preenche o container arredondado, sem moldura retangular */
+  .modal-img-wrap { border-radius:14px; overflow:hidden; background:#18181B;
+    border:1px solid #2E2E2E; position:relative; flex:none;
+    width:100%; height:clamp(150px, 24vh, 200px);
+    display:flex; align-items:center; justify-content:center; }
+  .modal-img-wrap img { display:block; width:100%; height:100%;
+    object-fit:cover; object-position:center; border-radius:inherit; }
+  .modal-badge { position:absolute; top:8px; left:8px; z-index:2; background:#FFD700; color:#0A0A0A;
+    font-weight:800; font-size:10px; text-transform:uppercase; padding:2px 8px; border-radius:6px; }
+  .modal-sizes { display:flex; flex-wrap:wrap; gap:6px; }
+  .modal-size-btn { width:38px; height:38px; border-radius:10px; font-weight:700; font-size:12px;
+    border:1px solid #52525B; background:#27272A; color:#fff; cursor:pointer; transition:all .15s; }
+  .modal-size-btn:hover:not(:disabled) { border-color:#A1A1AA; }
+  .modal-size-btn[aria-pressed="true"] { background:#FFD700; color:#0A0A0A; border-color:#FFD700; }
+  .modal-size-btn:disabled { background:#18181B; color:#52525B; border-color:#27272A;
+    text-decoration:line-through; cursor:not-allowed; }
+  .modal-wa-btn { width:100%; background:#16A34A; color:#fff; font-weight:800; font-size:13px;
+    padding:12px; border-radius:12px; border:none; cursor:pointer; display:flex; align-items:center;
+    justify-content:center; gap:8px; text-transform:uppercase; letter-spacing:.05em; transition:background .15s; }
+  .modal-wa-btn:hover:not(:disabled) { background:#15803D; }
+  .modal-wa-btn:disabled { background:#27272A; color:#71717A; cursor:not-allowed; }
+  .modal-cart-btn { width:100%; background:#0A0A0A; color:#D4D4D8; font-weight:700; font-size:12px;
+    padding:10px; border-radius:12px; border:1px solid #2E2E2E; cursor:pointer; transition:background .15s; }
+  .modal-cart-btn:hover:not(:disabled) { background:#27272A; }
+  .modal-cart-btn:disabled { opacity:.4; cursor:not-allowed; }
+</style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+<!-- Ícones SVG inline -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 110.9L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 448 512"><path d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48z"/></symbol>
+  <symbol id="i-cog" viewBox="0 0 512 512"><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 448 512"><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 512 512"><path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/></symbol>
+  <symbol id="i-back" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 448 512"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 640 512"><path d="M48 0C21.5 0 0 21.5 0 48V368c0 26.5 21.5 48 48 48H64c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H48zM416 160h50.7L544 237.3V256H416V160zM112 416a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm368-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></symbol>
+  <symbol id="i-box" viewBox="0 0 448 512"><path d="M50.7 58.5L0 160H208V32H93.7C75.5 32 58.9 42.3 50.7 58.5zM240 160H448L397.3 58.5C389.1 42.3 372.5 32 354.3 32H240V160zm208 32H0V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 512 512"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0z"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 448 512"><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3V320c0 17.7 14.3 32 32 32s32-14.3 32-32V109.3l73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 53 43 96 96 96H352c53 0 96-43 96-96V352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V352z"/></symbol>
+</svg>
+
+<a href="#produtos" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:bg-brand-yellow focus:text-black focus:px-4 focus:py-2 focus:rounded-xl focus:font-bold">Pular para os produtos</a>
+
+<header class="sticky top-0 z-40">
+  <div class="bg-brand-yellow text-black font-extrabold text-xs py-1.5 px-4 text-center tracking-wide uppercase">
+    <svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg>
+    Entrega rápida em Anápolis-GO • Parcele em até 10x no cartão • Produtos 100% originais
+  </div>
+  <div class="bg-brand-black/95 backdrop-blur border-b border-brand-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+    <a href="#" id="logoLink" class="flex items-center gap-2.5 group">
+      <div class="bg-brand-yellow text-black font-heading font-black text-xl w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-brand-yellow/20 group-hover:scale-105 transition-transform">TT</div>
+      <div class="flex flex-col">
+        <span class="font-heading font-black text-lg sm:text-xl text-white tracking-wider leading-none">TOP TÊNIS</span>
+        <span class="text-[10px] text-brand-yellow font-bold uppercase tracking-widest mt-0.5">Anápolis • Vitrine Digital</span>
+      </div>
+    </a>
+
+    <div class="hidden md:flex items-center gap-6">
+      <div class="flex items-center gap-2 bg-brand-cardBg px-3 py-1.5 rounded-full border border-brand-border text-xs">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 pulse-dot"></span>
+        <span class="text-zinc-300 font-medium" id="storeStatusText">Loja aberta • Anápolis</span>
+      </div>
+      <a href="https://instagram.com/top_tenisanapolis" target="_blank" rel="noopener" class="text-xs text-zinc-300 hover:text-brand-yellow transition flex items-center gap-1.5">
+        <svg class="icon text-base text-brand-yellow" aria-hidden="true"><use href="#i-instagram"/></svg>
+        <span>@top_tenisanapolis</span>
+      </a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button id="cartBtn" class="relative bg-brand-cardBg hover:bg-brand-cardHover border border-brand-border px-3.5 py-2.5 rounded-xl flex items-center gap-2.5 transition text-white min-h-[44px]">
+        <svg class="icon text-brand-yellow text-lg" aria-hidden="true"><use href="#i-bag"/></svg>
+        <span class="text-xs font-bold hidden sm:inline">Minha sacola</span>
+        <span id="cartCount" class="bg-brand-yellow text-black font-black text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        <span class="sr-only">Abrir sacola de compras</span>
+      </button>
+    </div>
+  </div>
+  </div>
+</header>
+
+<section id="filterBar" class="bg-brand-cardBg border-b border-brand-border py-3">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+
+    <div class="flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
+      <div class="relative w-full sm:w-96">
+        <svg class="icon absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400 text-sm" aria-hidden="true"><use href="#i-search"/></svg>
+        <label for="searchInput" class="sr-only">Buscar tênis por modelo ou marca</label>
+        <input type="search" id="searchInput" placeholder="Buscar modelo (ex: nike air, mizuno, casual)..."
+               class="w-full bg-brand-cardBg border border-brand-border text-white text-sm rounded-xl pl-10 pr-10 py-3 focus:border-brand-yellow transition placeholder-zinc-400">
+      </div>
+
+      <div class="flex items-center gap-3">
+        <label for="sortSelect" class="sr-only">Ordenar</label>
+        <select id="sortSelect" class="bg-brand-cardBg border border-brand-border text-zinc-200 text-xs rounded-xl px-3 py-2.5 min-h-[44px]">
+          <option value="rel">Ordenar: Destaques</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="novos">Novidades</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-[11px] font-bold uppercase text-zinc-300 tracking-wider">Selecione a sua numeração</span>
+        <span class="text-[11px] text-zinc-400 hidden sm:block">Mostramos só o que está em estoque</span>
+      </div>
+      <div class="flex gap-2 overflow-x-auto hide-scrollbar pb-1 text-sm" id="sizeContainer" role="group" aria-label="Filtro por numeração"></div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 items-center text-xs border-t border-brand-border/50 pt-2">
+      <div class="flex gap-2 overflow-x-auto hide-scrollbar" id="categoryContainer" role="group" aria-label="Filtro por categoria"></div>
+      <label class="flex items-center gap-1.5 text-zinc-300 ml-auto cursor-pointer py-2">
+        <input type="checkbox" id="showSoldOut" class="w-4 h-4 accent-brand-yellow rounded cursor-pointer">
+        Incluir esgotados
+      </label>
+    </div>
+
+    <div class="flex justify-between items-center gap-3 text-xs text-zinc-300" aria-live="polite">
+      <span id="productCounterText">Carregando modelos...</span>
+      <button id="resetFiltersBtn" class="text-brand-yellow hover:underline font-semibold py-2">Limpar filtros</button>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= VITRINE ======================= -->
+<div id="showcaseSection" class="flex-1 pb-24">
+
+  <section class="relative bg-gradient-to-b from-brand-black via-zinc-900 to-brand-black border-b border-brand-border overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-brand-yellow/10 border border-brand-yellow/30 text-brand-yellow text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+          <svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg>
+          <span>Estoque atualizado • <span id="heroStockCount">0</span> pares pronta entrega</span>
+        </div>
+        <h1 class="font-heading text-3xl sm:text-5xl font-black text-white leading-tight uppercase tracking-tight">
+          Encontre o seu tênis no <span class="text-brand-yellow">tamanho exato</span>
+        </h1>
+        <p class="mt-3 text-zinc-300 text-sm sm:text-base leading-relaxed">
+          Filtre pela sua numeração, veja quantos pares ainda temos e feche pelo WhatsApp com entrega no mesmo dia em Anápolis.
+        </p>
+      </div>
+    </div>
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-brand-yellow/5 rounded-full blur-3xl pointer-events-none"></div>
+  </section>
+
+  <main id="produtos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div id="emptyState" class="hidden text-center py-16 bg-brand-cardBg/40 rounded-2xl border border-dashed border-brand-border p-8">
+      <h2 class="text-lg font-bold text-white font-heading">Nenhum tênis com esses filtros</h2>
+      <p class="text-zinc-300 text-sm mt-1 max-w-md mx-auto" id="emptyStateHint">Tente outra numeração ou um termo mais genérico.</p>
+      <div class="flex flex-wrap gap-2 justify-center mt-4">
+        <button id="emptyResetBtn" class="bg-brand-yellow text-black font-extrabold text-xs uppercase px-5 py-3 rounded-xl hover:bg-brand-yellowDark transition">Ver todo o estoque</button>
+        <button id="emptyAskBtn" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs uppercase px-5 py-3 rounded-xl transition">Perguntar no WhatsApp</button>
+      </div>
+    </div>
+
+    <div id="productsGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"></div>
+  </main>
+
+  <section class="bg-brand-cardBg border-y border-brand-border py-12 mt-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-brand-yellow text-xs font-bold uppercase tracking-widest">Confiança em Anápolis</span>
+        <h2 class="font-heading text-2xl sm:text-3xl font-black text-white mt-1">Por que comprar na Top Tênis?</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-brand-black border border-brand-border text-center">
+          <div class="w-12 h-12 bg-brand-yellow/10 text-brand-yellow rounded-xl flex items-center justify-center mx-auto mb-3 text-xl"><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg></div>
+          <h3 class="font-heading font-bold text-white text-base">Entrega expressa em Anápolis</h3>
+          <p class="text-zinc-300 text-xs mt-1.5 leading-relaxed">Receba no mesmo dia por motoboy ou retire na loja física.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-brand-black border border-brand-border text-center">
+          <div class="w-12 h-12 bg-brand-yellow/10 text-brand-yellow rounded-xl flex items-center justify-center mx-auto mb-3 text-xl"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg></div>
+          <h3 class="font-heading font-bold text-white text-base">Experimentação local</h3>
+          <p class="text-zinc-300 text-xs mt-1.5 leading-relaxed">Prove no ato da entrega. Se o número não servir, a troca é na hora.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-brand-black border border-brand-border text-center">
+          <div class="w-12 h-12 bg-brand-yellow/10 text-brand-yellow rounded-xl flex items-center justify-center mx-auto mb-3 text-xl"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></div>
+          <h3 class="font-heading font-bold text-white text-base">Atendimento direto</h3>
+          <p class="text-zinc-300 text-xs mt-1.5 leading-relaxed">Fale com a equipe no WhatsApp. Sem robô, sem espera.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================= PAINEL ADM ======================= -->
+<div id="admSection" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1 pb-24">
+
+  <div id="admLogin" class="max-w-sm mx-auto bg-brand-cardBg border border-brand-border rounded-2xl p-6 mt-8">
+    <div class="w-12 h-12 bg-brand-yellow/10 text-brand-yellow rounded-xl flex items-center justify-center mb-4 text-xl"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></div>
+    <h2 class="font-heading font-black text-xl text-white">Painel restrito</h2>
+    <p class="text-zinc-300 text-xs mt-1 mb-4">Acesso apenas para a equipe da Top Tênis.</p>
+    <form id="admLoginForm" class="space-y-3">
+      <label for="admPass" class="sr-only">Senha</label>
+      <input type="password" id="admPass" placeholder="Senha do painel" class="w-full bg-brand-black border border-brand-border rounded-xl px-3.5 py-3 text-sm text-white focus:border-brand-yellow">
+      <p id="admLoginError" class="hidden text-xs text-red-400 font-semibold">Senha incorreta. Tente novamente.</p>
+      <button type="submit" class="w-full bg-brand-yellow text-black font-extrabold text-sm py-3 rounded-xl uppercase tracking-wider hover:bg-brand-yellowDark transition">Entrar</button>
+      <button type="button" id="admBackBtn" class="w-full text-zinc-300 text-xs font-bold py-2">Voltar para a vitrine</button>
+    </form>
+    <p class="text-[10px] text-zinc-500 mt-4 leading-relaxed">
+      Atenção: esta senha roda no navegador e serve apenas para o protótipo. Na versão publicada, a autenticação precisa ficar no servidor.
+    </p>
+  </div>
+
+  <div id="admPanel" class="hidden">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 pb-4 border-b border-brand-border">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-brand-yellow text-black font-bold text-xs px-2.5 py-0.5 rounded uppercase tracking-wider mb-1">
+          <svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg> Painel ADM
+        </div>
+        <h1 class="font-heading font-black text-2xl sm:text-3xl text-white">Controle de estoque e catálogo</h1>
+      </div>
+      <div class="flex gap-2 flex-wrap">
+        <button id="exportBtn" class="bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs px-4 py-3 rounded-xl transition">Baixar backup</button>
+        <label class="bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs px-4 py-3 rounded-xl transition cursor-pointer">
+          Restaurar backup
+          <input type="file" id="importInput" accept="application/json" class="hidden">
+        </label>
+        <button id="admExitBtn" class="bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs px-4 py-3 rounded-xl transition flex items-center gap-2">
+          <svg class="icon" aria-hidden="true"><use href="#i-back"/></svg> Ver vitrine
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div class="bg-brand-cardBg border border-brand-border p-4 rounded-xl">
+        <div class="text-zinc-300 text-xs font-semibold">Produtos</div>
+        <div class="text-2xl font-black text-white mt-1" id="mTotalProducts">0</div>
+      </div>
+      <div class="bg-brand-cardBg border border-brand-border p-4 rounded-xl">
+        <div class="text-zinc-300 text-xs font-semibold">Em promoção</div>
+        <div class="text-2xl font-black text-brand-yellow mt-1" id="mPromo">0</div>
+      </div>
+      <div class="bg-brand-cardBg border border-brand-border p-4 rounded-xl">
+        <div class="text-zinc-300 text-xs font-semibold">Pares em estoque</div>
+        <div class="text-2xl font-black text-white mt-1" id="mStock">0</div>
+      </div>
+      <div class="bg-brand-cardBg border border-brand-border p-4 rounded-xl">
+        <div class="text-zinc-300 text-xs font-semibold">Esgotando (≤2 pares)</div>
+        <div class="text-2xl font-black text-orange-400 mt-1" id="mLow">0</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div class="bg-brand-cardBg border border-brand-border p-6 rounded-2xl space-y-4">
+        <h3 class="font-heading font-bold text-lg text-white">Categorias</h3>
+        <form id="categoryForm" class="flex gap-2">
+          <label for="newCategoryInput" class="sr-only">Nova categoria</label>
+          <input type="text" id="newCategoryInput" placeholder="Nova categoria (ex: Skate)" class="flex-1 bg-brand-black border border-brand-border rounded-xl px-3.5 py-3 text-sm text-white focus:border-brand-yellow">
+          <button type="submit" class="bg-brand-yellow text-black font-extrabold text-xs px-4 py-3 rounded-xl hover:bg-brand-yellowDark transition">Adicionar</button>
+        </form>
+        <div class="border-t border-brand-border/60 pt-3">
+          <span class="text-xs text-zinc-300 block mb-2 font-medium">Categorias ativas:</span>
+          <div id="admCategoryList" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+
+      <div class="bg-brand-cardBg border border-brand-border p-6 rounded-2xl space-y-4">
+        <h3 class="font-heading font-bold text-lg text-white">Promoção em lote</h3>
+        <div class="grid grid-cols-2 gap-3">
+          <label for="campaignCategorySelect" class="sr-only">Categoria da campanha</label>
+          <select id="campaignCategorySelect" class="bg-brand-black border border-brand-border rounded-xl px-3 py-3 text-xs text-white focus:border-brand-yellow"></select>
+          <label for="campaignDiscountInput" class="sr-only">Percentual de desconto</label>
+          <input type="number" id="campaignDiscountInput" placeholder="% desconto (ex: 15)" min="1" max="90" class="bg-brand-black border border-brand-border rounded-xl px-3 py-3 text-xs text-white focus:border-brand-yellow">
+        </div>
+        <div class="flex gap-2">
+          <button id="applyPromoBtn" class="flex-1 bg-brand-yellow text-black font-extrabold text-xs py-3 rounded-xl hover:bg-brand-yellowDark transition">Aplicar desconto</button>
+          <button id="removePromoBtn" class="bg-zinc-800 text-zinc-200 font-bold text-xs px-4 py-3 rounded-xl hover:bg-zinc-700 transition">Remover promoções</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-brand-cardBg border border-brand-border p-6 rounded-2xl mb-8">
+      <div class="flex items-center justify-between mb-4 gap-3 flex-wrap">
+        <h3 class="font-heading font-bold text-lg text-white" id="formTitle">Cadastrar novo produto</h3>
+        <button id="cancelEditBtn" class="hidden text-xs font-bold text-zinc-300 bg-zinc-800 px-3 py-2 rounded-xl">Cancelar edição</button>
+      </div>
+
+      <form id="productForm" class="space-y-4">
+        <input type="hidden" id="pId">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div>
+            <label for="pName" class="block text-xs font-bold text-zinc-300 mb-1">Nome do produto *</label>
+            <input type="text" id="pName" required placeholder="Ex: Nike Dunk Low Black" class="w-full bg-brand-black border border-brand-border rounded-xl px-3.5 py-3 text-sm text-white focus:border-brand-yellow">
+          </div>
+          <div>
+            <label for="pCategory" class="block text-xs font-bold text-zinc-300 mb-1">Categoria *</label>
+            <select id="pCategory" required class="w-full bg-brand-black border border-brand-border rounded-xl px-3.5 py-3 text-sm text-white focus:border-brand-yellow"></select>
+          </div>
+          <div>
+            <label for="pPrice" class="block text-xs font-bold text-zinc-300 mb-1">Preço original (R$) *</label>
+            <input type="number" step="0.01" id="pPrice" required placeholder="299.90" class="w-full bg-brand-black border border-brand-border rounded-xl px-3.5 py-3 text-sm text-white focus:border-brand-yellow">
+          </div>
+        </div>
+
+        <div>
+          <label for="pDescription" class="block text-xs font-bold text-zinc-300 mb-1">Descrição</label>
+          <textarea id="pDescription" rows="2" placeholder="Material, indicação de uso, detalhes do modelo..." class="w-full bg-brand-black border border-brand-border rounded-xl px-3.5 py-3 text-sm text-white focus:border-brand-yellow"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-brand-black/50 p-4 rounded-xl border border-brand-border">
+          <div class="flex items-center gap-2 pt-2">
+            <input type="checkbox" id="pIsPromo" class="w-4 h-4 accent-brand-yellow rounded cursor-pointer">
+            <label for="pIsPromo" class="text-xs font-bold text-white cursor-pointer">Produto em promoção?</label>
+          </div>
+          <div>
+            <label for="pPromoPercent" class="block text-xs font-bold text-zinc-300 mb-1">% de desconto</label>
+            <input type="number" id="pPromoPercent" disabled min="1" max="90" placeholder="10" class="w-full bg-brand-black border border-brand-border rounded-xl px-3.5 py-3 text-sm text-white focus:border-brand-yellow disabled:opacity-40">
+          </div>
+          <div class="flex flex-col justify-center">
+            <span class="text-[11px] text-zinc-300">Preço final com desconto:</span>
+            <span id="pFinalPricePreview" class="text-sm font-black text-brand-yellow">R$ 0,00</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-4 items-end">
+          <div>
+            <label for="pImageFile" class="block text-xs font-bold text-zinc-300 mb-1">Foto do produto</label>
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input type="file" id="pImageFile" accept="image/*" capture="environment"
+                     class="flex-1 text-xs text-zinc-300 file:bg-brand-yellow file:text-black file:font-bold file:border-0 file:rounded-lg file:px-3 file:py-2 file:mr-3 bg-brand-black border border-brand-border rounded-xl p-2">
+              <input type="url" id="pImage" placeholder="ou cole uma URL de imagem" class="flex-1 bg-brand-black border border-brand-border rounded-xl px-3.5 py-3 text-sm text-white focus:border-brand-yellow">
+            </div>
+            <p class="text-[10px] text-zinc-400 mt-1">A foto é reduzida para 900px e comprimida automaticamente antes de salvar.</p>
+          </div>
+          <img id="pImagePreview" alt="" class="w-20 h-20 object-cover rounded-xl border border-brand-border bg-brand-black">
+        </div>
+
+        <div>
+          <span class="block text-xs font-bold text-zinc-300 mb-2">Estoque por numeração (pares pronta entrega)</span>
+          <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-2" id="sizeStockInputGrid"></div>
+        </div>
+
+        <button type="submit" id="submitProductBtn" class="w-full bg-brand-yellow text-black font-extrabold text-sm py-3.5 rounded-xl uppercase tracking-wider hover:bg-brand-yellowDark transition">Salvar e adicionar ao estoque</button>
+      </form>
+    </div>
+
+    <div class="bg-brand-cardBg border border-brand-border rounded-2xl overflow-hidden">
+      <div class="p-4 border-b border-brand-border">
+        <h3 class="font-heading font-bold text-lg text-white">Estoque cadastrado</h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-zinc-200">
+          <caption class="sr-only">Lista de produtos cadastrados com estoque por numeração</caption>
+          <thead class="bg-brand-black text-brand-yellow font-bold border-b border-brand-border uppercase tracking-wider">
+            <tr><th scope="col" class="p-3">Produto</th><th scope="col" class="p-3">Categoria</th><th scope="col" class="p-3">Preço</th><th scope="col" class="p-3">Promoção</th><th scope="col" class="p-3">Numerações</th><th scope="col" class="p-3 text-right">Ações</th></tr>
+          </thead>
+          <tbody id="admProductsTableBody" class="divide-y divide-brand-border"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Rodapé -->
+<footer class="bg-brand-black border-t border-brand-border py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+      <div>
+        <div class="flex items-center justify-center md:justify-start gap-2">
+          <div class="bg-brand-yellow text-black font-black text-sm w-7 h-7 rounded-lg flex items-center justify-center">TT</div>
+          <span class="font-heading font-black text-white tracking-wider">TOP TÊNIS ANÁPOLIS</span>
+        </div>
+        <p class="text-zinc-400 text-xs mt-2">O melhor do streetwear e calçados esportivos em Anápolis-GO.</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://instagram.com/top_tenisanapolis" target="_blank" rel="noopener" class="w-11 h-11 rounded-full bg-brand-cardBg border border-brand-border flex items-center justify-center text-zinc-200 hover:text-brand-yellow hover:border-brand-yellow transition">
+          <svg class="icon text-lg" aria-hidden="true"><use href="#i-instagram"/></svg><span class="sr-only">Instagram</span>
+        </a>
+        <a id="footerWhats" href="#" target="_blank" rel="noopener" class="w-11 h-11 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-500 transition">
+          <svg class="icon text-lg" aria-hidden="true"><use href="#i-whatsapp"/></svg><span class="sr-only">WhatsApp</span>
+        </a>
+        <button id="admOpenBtn" class="px-3 py-2.5 rounded-xl bg-zinc-900 border border-brand-border text-[11px] font-bold text-zinc-400 hover:text-brand-yellow transition flex items-center gap-1.5">
+          <svg class="icon" aria-hidden="true"><use href="#i-cog"/></svg> Equipe
+        </button>
+      </div>
+    </div>
+    <div class="border-t border-brand-border/40 mt-6 pt-6 text-center text-zinc-500 text-[11px]">
+      Top Tênis Anápolis © 2026 — Vitrine Digital Interativa.
+    </div>
+  </div>
+</footer>
+
+<!-- Botão flutuante de WhatsApp -->
+<a id="floatWhats" href="#" target="_blank" rel="noopener"
+   class="fixed bottom-5 right-5 z-30 bg-emerald-600 hover:bg-emerald-500 text-white w-14 h-14 rounded-full shadow-lg shadow-emerald-600/30 flex items-center justify-center transition">
+  <svg class="icon text-2xl" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+  <span class="sr-only">Falar com a loja no WhatsApp</span>
+</a>
+
+<!-- Modal de produto -->
+<div id="productModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="min-h-full flex items-center justify-center p-4">
+    <div class="bg-brand-cardBg border border-brand-border rounded-2xl max-w-sm w-full shadow-2xl relative my-8" data-modal-box>
+      <button data-close-modal class="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-black/70 text-white hover:text-brand-yellow flex items-center justify-center transition border border-white/10">
+        <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only">Fechar</span>
+      </button>
+      <div id="modalContent" class="p-6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal da sacola -->
+<div id="cartModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+  <div class="min-h-full flex items-center justify-center p-4">
+    <div class="bg-brand-cardBg border border-brand-border rounded-2xl max-w-md w-full p-6 relative" data-modal-box>
+      <div class="flex items-center justify-between border-b border-brand-border pb-4 mb-4">
+        <h2 id="cartTitle" class="font-heading font-black text-lg text-white">Sua sacola</h2>
+        <button data-close-modal class="w-11 h-11 rounded-full flex items-center justify-center text-zinc-300 hover:text-white">
+          <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only">Fechar</span>
+        </button>
+      </div>
+      <div id="cartItemsContainer" class="max-h-72 overflow-y-auto space-y-3 pr-1"></div>
+      <div class="border-t border-brand-border pt-4 mt-4 space-y-3">
+        <div class="flex justify-between items-center text-sm font-bold">
+          <span class="text-zinc-300">Total estimado:</span>
+          <span id="cartTotalPrice" class="text-brand-yellow text-lg font-black">R$ 0,00</span>
+        </div>
+        <button id="checkoutCartBtn" class="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-zinc-700 disabled:cursor-not-allowed text-white font-extrabold text-sm py-3.5 rounded-xl uppercase tracking-wider flex items-center justify-center gap-2 transition">
+          <svg class="icon text-lg" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+          <span>Enviar sacola pelo WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast de feedback -->
+<div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] hidden bg-white text-black font-bold text-sm px-5 py-3 rounded-xl shadow-2xl" role="status" aria-live="polite"></div>
+
+<script>
+const STORE_WHATSAPP = '5562999999999';
+const ADM_PASSWORD   = 'toptenis2026';
+const SIZES = [34,35,36,37,38,39,40,41,42,43,44];
+const BAIRROS = ['Centro','Jundiaí','DAIA','Bairro de Lourdes','Cidade Jardim','Vila Jaiara','Outro bairro / combinar'];
+
+const defaultCategories = ['Esportivo','Casual','Corrida','Chuteiras','Skate'];
+const defaultProducts = [
+  { id:'1', name:'Nike Air Max Excee Preto/Amarelo', category:'Esportivo', price:349.90, isPromo:true, promoPercent:15,
+    image:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+    sizesStock:{34:0,35:0,36:0,37:2,38:4,39:5,40:3,41:2,42:1,43:0,44:0}, createdAt:1,
+    description:'Estilo urbano com amortecimento de alta resposta. Cabedal respirável com detalhes em amarelo.' },
+  { id:'2', name:'Mizuno Wave Rider 26', category:'Corrida', price:429.90, isPromo:false, promoPercent:0,
+    image:'https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?auto=format&fit=crop&w=800&q=80',
+    sizesStock:{34:0,35:0,36:1,37:2,38:3,39:4,40:4,41:3,42:2,43:1,44:0}, createdAt:2,
+    description:'Tecnologia Wave para absorção de impacto. Perfeito para corridas no Parque Ipiranga.' },
+  { id:'3', name:'Puma RS-X Streetwear Black', category:'Casual', price:389.90, isPromo:true, promoPercent:20,
+    image:'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80',
+    sizesStock:{34:0,35:0,36:2,37:3,38:3,39:2,40:1,41:0,42:0,43:0,44:0}, createdAt:3,
+    description:'Design retrô futurista com solado robusto. Estilo inconfundível para o look casual.' },
+  { id:'4', name:'Adidas Ultraboost Light', category:'Corrida', price:499.90, isPromo:false, promoPercent:0,
+    image:'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
+    sizesStock:{34:0,35:0,36:0,37:1,38:3,39:5,40:5,41:4,42:3,43:2,44:1}, createdAt:4,
+    description:'Alto retorno de energia e solado Continental para aderência no asfalto.' }
+];
+
+const Store = {
+  async getProducts(){ const s = localStorage.getItem('toptenis_products'); return s ? JSON.parse(s) : defaultProducts; },
+  async setProducts(p){ localStorage.setItem('toptenis_products', JSON.stringify(p)); },
+  async getCategories(){ const s = localStorage.getItem('toptenis_categories'); return s ? JSON.parse(s) : defaultCategories; },
+  async setCategories(c){ localStorage.setItem('toptenis_categories', JSON.stringify(c)); }
+};
+
+let products = [], categories = [], cart = [];
+let filters = { q:'', size:null, cat:'Todos', showSoldOut:false, sort:'rel' };
+let modalProduct = null, modalSize = null, modalBairro = BAIRROS[0];
+let editingId = null, lastFocused = null;
+
+const BRL = new Intl.NumberFormat('pt-BR',{ style:'currency', currency:'BRL' });
+const money = n => BRL.format(Number(n)||0);
+const norm = s => String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const esc = s => String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $ = id => document.getElementById(id);
+const finalPrice = p => (p.isPromo && p.promoPercent>0) ? p.price*(1-p.promoPercent/100) : p.price;
+const stockOf = (p,s) => Number(p.sizesStock?.[s]) || 0;
+const totalStock = p => SIZES.reduce((a,s)=>a+stockOf(p,s),0);
+const availableSizes = p => SIZES.filter(s=>stockOf(p,s)>0);
+
+function toast(msg){
+  const t = $('toast'); t.textContent = msg; t.classList.remove('hidden');
+  clearTimeout(t._t); t._t = setTimeout(()=>t.classList.add('hidden'), 2600);
+}
+function waLink(text){ return `https://wa.me/${STORE_WHATSAPP}?text=${encodeURIComponent(text)}`; }
+
+function openModal(el){
+  lastFocused = document.activeElement;
+  el.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+  const focusable = el.querySelector('button, [href], input, select, textarea');
+  if (focusable) focusable.focus();
+}
+function closeModal(el){
+  el.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  if (el.id === 'productModal' && location.hash.startsWith('#/produto/')) history.pushState('', '', location.pathname);
+  if (lastFocused) lastFocused.focus();
+}
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  document.querySelectorAll('[role="dialog"]:not(.hidden)').forEach(closeModal);
+});
+document.querySelectorAll('[role="dialog"]').forEach(dlg => {
+  dlg.addEventListener('click', e => { if (!e.target.closest('[data-modal-box]')) closeModal(dlg); });
+  dlg.querySelectorAll('[data-close-modal]').forEach(b => b.addEventListener('click', ()=>closeModal(dlg)));
+  dlg.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const f = [...dlg.querySelectorAll('button, [href], input, select, textarea')].filter(el=>!el.disabled && el.offsetParent!==null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length-1];
+    if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+});
+
+window.addEventListener('DOMContentLoaded', async () => {
+  products = await Store.getProducts();
+  categories = await Store.getCategories();
+  cart = JSON.parse(localStorage.getItem('toptenis_cart') || '[]');
+
+  $('footerWhats').href = waLink('Olá, Top Tênis Anápolis! Vim pela vitrine digital.');
+  $('floatWhats').href  = waLink('Olá, Top Tênis Anápolis! Tenho uma dúvida sobre um modelo da vitrine.');
+
+  renderSizePills(); renderCategoryPills(); renderSizeStockInputs();
+  updateCartCount(); applyFilters(); bindUI();
+  openFromHash();
+});
+window.addEventListener('hashchange', openFromHash);
+
+function openFromHash(){
+  const m = location.hash.match(/^#\/produto\/(.+)$/);
+  if (m) { const p = products.find(x=>x.id===decodeURIComponent(m[1])); if (p) openProduct(p.id); }
+}
+
+function renderSizePills(){
+  const c = $('sizeContainer');
+  const pill = (label, size, active, disabled, count) => `
+    <button data-size="${size===null?'':size}" ${disabled?'disabled aria-disabled="true"':''}
+      aria-pressed="${active}"
+      class="min-w-[44px] h-11 px-3 rounded-xl border font-extrabold text-xs transition flex-shrink-0 flex flex-col items-center justify-center
+      ${active ? 'bg-brand-yellow text-black border-brand-yellow shadow-md shadow-brand-yellow/20'
+        : disabled ? 'bg-zinc-900 text-zinc-600 border-zinc-800 line-through cursor-not-allowed'
+        : 'bg-brand-cardBg text-zinc-200 border-brand-border hover:border-zinc-500'}">
+      <span>${label}</span>${count!==undefined && !disabled && !active ? `<span class="text-[9px] font-medium opacity-60">${count}</span>`:''}
+    </button>`;
+  let html = pill('Todos', null, filters.size===null, false);
+  SIZES.forEach(s => {
+    const n = products.filter(p => stockOf(p,s) > 0).length;
+    html += pill(s, s, filters.size===s, n===0, n);
+  });
+  c.innerHTML = html;
+}
+
+function renderCategoryPills(){
+  const c = $('categoryContainer');
+  const pill = cat => {
+    const active = filters.cat === cat;
+    return `<button data-cat="${esc(cat)}" aria-pressed="${active}" class="px-3.5 h-9 rounded-full border text-xs font-semibold transition flex-shrink-0
+      ${active ? 'bg-zinc-100 text-black border-white' : 'bg-transparent text-zinc-300 border-brand-border hover:text-white'}">${esc(cat)}</button>`;
+  };
+  c.innerHTML = ['Todos', ...categories].map(pill).join('');
+}
+
+function applyFilters(){
+  const q = norm(filters.q);
+  let list = products.filter(p => {
+    const hit = !q || norm(p.name).includes(q) || norm(p.category).includes(q) || norm(p.description).includes(q);
+    const cat = filters.cat === 'Todos' || p.category === filters.cat;
+    const size = filters.size === null || stockOf(p, filters.size) > 0;
+    const sold = filters.showSoldOut || totalStock(p) > 0 || filters.size !== null;
+    return hit && cat && size && sold;
+  });
+
+  const cmp = {
+    menor: (a,b) => finalPrice(a)-finalPrice(b),
+    maior: (a,b) => finalPrice(b)-finalPrice(a),
+    novos: (a,b) => (b.createdAt||0)-(a.createdAt||0),
+    rel:   (a,b) => (totalStock(b)>0)-(totalStock(a)>0) || (b.isPromo?1:0)-(a.isPromo?1:0) || (b.createdAt||0)-(a.createdAt||0)
+  }[filters.sort];
+  list.sort(cmp);
+
+  const counter = $('productCounterText');
+  counter.innerHTML = filters.size
+    ? `<strong class="text-brand-yellow">${list.length} ${list.length===1?'modelo':'modelos'}</strong> com estoque no tamanho <strong class="text-brand-yellow">${filters.size}</strong>`
+    : `<strong class="text-brand-yellow">${list.length} ${list.length===1?'modelo':'modelos'}</strong> disponíveis`;
+
+  $('heroStockCount').textContent = products.reduce((a,p)=>a+totalStock(p),0);
+  renderProducts(list);
+}
+
+function resetFilters(){
+  filters = { q:'', size:null, cat:'Todos', showSoldOut:false, sort:'rel' };
+  $('searchInput').value = ''; $('showSoldOut').checked = false; $('sortSelect').value = 'rel';
+  renderSizePills(); renderCategoryPills(); applyFilters();
+}
+
+function renderProducts(items){
+  const grid = $('productsGrid'), empty =$('emptyState');
+  if (!items.length){
+    grid.classList.add('hidden'); empty.classList.remove('hidden');
+    $('emptyStateHint').textContent = filters.size
+      ? `Não temos nada no ${filters.size} com esses filtros. Podemos encomendar para você.`
+      : 'Tente outra numeração ou um termo mais genérico.';
+    $('emptyAskBtn').onclick = () => window.open(waLink(
+      `Olá! Procurei na vitrine ${filters.size ? 'o tamanho '+filters.size : 'um modelo'}${filters.q ? ' ("'+filters.q+'")' : ''} e não encontrei. Vocês conseguem encomendar?`), '_blank');
+    return;
+  }
+  empty.classList.add('hidden'); grid.classList.remove('hidden');
+
+  grid.innerHTML = items.map(p => {
+    const sizes = availableSizes(p);
+    const out = sizes.length === 0;
+    const selQty = filters.size ? stockOf(p, filters.size) : 0;
+
+    const sizeChips = sizes.map(s => {
+      const on = filters.size === s, qty = stockOf(p,s);
+      return `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${on?'bg-brand-yellow text-black':'bg-zinc-800 text-zinc-300 border border-zinc-700'}">${s}${qty<=2?'<span class="opacity-70"> ·'+qty+'</span>':''}</span>`;
+    }).join('');
+
+    const urgency = out
+      ? `<span class="text-[10px] font-bold text-zinc-400">Esgotado — avise-me quando chegar</span>`
+      : filters.size && selQty <= 2
+        ? `<span class="text-[10px] font-bold text-orange-400">${selQty===1?'Último par':'Últimos '+selQty+' pares'} no ${filters.size}</span>`
+        : `<span class="text-[10px] text-zinc-400">${totalStock(p)} pares pronta entrega</span>`;
+
+    return `
+    <article class="bg-brand-cardBg border border-brand-border rounded-2xl overflow-hidden group hover:border-zinc-600 transition flex flex-col ${out?'opacity-70':''}">
+      <button data-open="${esc(p.id)}" class="relative aspect-[4/3] bg-zinc-900 overflow-hidden block w-full text-left">
+        <img src="${esc(p.image)}" alt="${esc(p.name)}" width="400" height="300" loading="lazy" decoding="async"
+             class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+        ${p.isPromo ? `<span class="absolute top-3 left-3 bg-brand-yellow text-black font-extrabold text-[10px] uppercase px-2.5 py-1 rounded-md">-${p.promoPercent}% OFF</span>`:''}
+        ${out ? `<span class="absolute inset-0 bg-black/55 flex items-center justify-center font-heading font-black text-sm text-white uppercase tracking-wider">Esgotado</span>`:''}
+      </button>
+
+      <div class="p-3 sm:p-4 flex-1 flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] font-bold uppercase text-zinc-400 tracking-wider">${esc(p.category)}</span>
+          <h3 class="font-heading font-bold text-white text-sm leading-snug mt-0.5">
+            <button data-open="${esc(p.id)}" class="text-left hover:text-brand-yellow transition">${esc(p.name)}</button>
+          </h3>
+          ${!out ? `<div class="mt-2.5">
+            <span class="text-[10px] text-zinc-400 block mb-1">Numerações disponíveis:</span>
+            <div class="flex flex-wrap gap-1">${sizeChips}</div>
+          </div>`:''}
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-brand-border/60">
+          ${p.isPromo ? `<span class="text-[10px] text-zinc-400 line-through block">${money(p.price)}</span>` : '<span class="text-[10px] text-zinc-400 block">Preço à vista</span>'}
+          <span class="font-heading font-black text-lg text-brand-yellow">${money(finalPrice(p))}</span>
+          <div class="mt-1">${urgency}</div>
+          <button data-open="${esc(p.id)}" class="w-full mt-3 bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs py-3 rounded-xl transition">
+            ${out ? 'Ver detalhes' : 'Escolher numeração'}
+          </button>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function openProduct(id){
+  const p = products.find(x => x.id === id); if (!p) return;
+  modalProduct = p;
+  const sizes = availableSizes(p);
+  modalSize = (filters.size && sizes.includes(filters.size)) ? filters.size : null;
+  modalBairro = BAIRROS[0];
+
+  $('modalContent').innerHTML = `
+    <div class="modal-img-wrap">
+      ${p.isPromo ? `<span class="modal-badge">-${p.promoPercent}% OFF</span>` : ''}
+      <img src="${esc(p.image)}" alt="${esc(p.name)}">
+    </div>
+
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#FFD700;text-transform:uppercase;letter-spacing:.1em">${esc(p.category)}</span>
+        <h2 id="modalTitle" class="font-heading" style="font-size:17px;font-weight:900;color:#fff;line-height:1.2;margin-top:2px">${esc(p.name)}</h2>
+      </div>
+      <button id="shareBtn" style="flex-shrink:0;width:36px;height:36px;border-radius:10px;background:#0A0A0A;border:1px solid #2E2E2E;color:#A1A1AA;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-top:4px" title="Compartilhar">
+        <svg class="icon" aria-hidden="true"><use href="#i-share"/></svg>
+        <span class="sr-only">Compartilhar</span>
+      </button>
+    </div>
+
+    <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
+      ${p.isPromo ? `<span style="font-size:12px;color:#71717A;text-decoration:line-through">${money(p.price)}</span>` : ''}
+      <span class="font-heading" style="font-size:24px;font-weight:900;color:#FFD700">${money(finalPrice(p))}</span>
+      <span style="font-size:11px;color:#A1A1AA">até 10x no cartão</span>
+    </div>
+
+    ${p.description ? `<p style="font-size:12px;color:#A1A1AA;line-height:1.5;margin-top:-6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${esc(p.description)}</p>` : ''}
+
+    <fieldset style="border:none;padding:0;margin:0">
+      <legend style="font-size:12px;font-weight:700;color:#fff;margin-bottom:8px;display:block">Escolha a numeração:</legend>
+      <div class="modal-sizes" id="modalSizes">
+        ${SIZES.map(s => {
+          const qty = stockOf(p,s);
+          return `<button data-msize="${s}" ${qty?'':'disabled aria-disabled="true"'} aria-pressed="false" class="modal-size-btn">${s}</button>`;
+        }).join('')}
+      </div>
+      <p id="sizeHint" style="font-size:11px;color:#A1A1AA;margin-top:8px">${sizes.length ? 'Toque no número para liberar o pedido.' : 'Esgotado no momento.'}</p>
+    </fieldset>
+
+    <div>
+      <label for="bairroSelect" style="font-size:12px;font-weight:700;color:#fff;display:block;margin-bottom:4px">Bairro para entrega:</label>
+      <select id="bairroSelect" style="width:100%;background:#0A0A0A;border:1px solid #2E2E2E;border-radius:10px;padding:10px 12px;font-size:12px;color:#D4D4D8;outline:none">
+        ${BAIRROS.map(b=>`<option value="${esc(b)}">${esc(b)}</option>`).join('')}
+      </select>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <button id="waBtn" disabled class="modal-wa-btn">
+        <svg class="icon" style="width:16px;height:16px" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+        <span id="waBtnLabel">${sizes.length ? 'Selecione a numeração' : 'Avise-me quando chegar'}</span>
+      </button>
+      <button id="addCartBtn" disabled class="modal-cart-btn">Adicionar à sacola</button>
+      <p id="msgPreview" style="font-size:10px;color:#71717A;text-align:center;line-height:1.4;min-height:14px"></p>
+    </div>`;
+
+  if (!sizes.length){
+    const wa = $('waBtn'); wa.disabled = false;
+    wa.onclick = () => window.open(waLink(`Olá! Tenho interesse no *${p.name}*, mas está esgotado na vitrine. Vocês conseguem encomendar?`), '_blank');
+  } else {
+    $('waBtn').onclick = sendProductWhats;
+    $('addCartBtn').onclick = addModalToCart;
+  }
+
+  $('modalSizes').addEventListener('click', e => {
+    const b = e.target.closest('[data-msize]'); if (!b || b.disabled) return;
+    selectModalSize(Number(b.dataset.msize));
+  });
+  $('bairroSelect').addEventListener('change', e => { modalBairro = e.target.value; updateMsgPreview(); });$('shareBtn').onclick = shareProduct;
+
+  if (modalSize) selectModalSize(modalSize);
+  history.replaceState('', '', '#/produto/' + encodeURIComponent(p.id));
+  openModal($('productModal'));
+}
+
+function selectModalSize(s){
+  modalSize = s;
+  document.querySelectorAll('#modalSizes [data-msize]').forEach(b => {
+    const on = Number(b.dataset.msize) === s;
+    b.setAttribute('aria-pressed', String(on));
+  });
+  const qty = stockOf(modalProduct, s);
+  $('sizeHint').innerHTML = qty <= 2
+    ? `<span class="text-orange-400 font-bold">${qty===1?'Último par':'Últimos '+qty+' pares'} no ${s}.</span>`
+    : `<span class="text-emerald-400 font-semibold">${qty} pares disponíveis no ${s}.</span>`;
+  $('waBtn').disabled = false;
+  $('addCartBtn').disabled = false;
+  $('waBtnLabel').textContent = 'Pedir pelo WhatsApp';
+  updateMsgPreview();
+}
+
+function updateMsgPreview(){
+  if (!modalSize) return;
+  $('msgPreview').textContent = `Vamos enviar: "${modalProduct.name}, nº ${modalSize}, entrega no ${modalBairro}".`;
+}
+
+function sendProductWhats(){
+  if (!modalProduct || !modalSize) return;
+  const msg = `Olá, Top Tênis Anápolis! Vi na vitrine digital o tênis *${modalProduct.name}* no tamanho *${modalSize}* por *${money(finalPrice(modalProduct))}*.\n\nBairro para entrega: *${modalBairro}* (Anápolis).\nComo faço para fechar?`;
+  window.open(waLink(msg), '_blank');
+}
+
+async function shareProduct(){
+  const url = location.origin + location.pathname + '#/produto/' + encodeURIComponent(modalProduct.id);
+  const data = { title: modalProduct.name, text: `${modalProduct.name} — ${money(finalPrice(modalProduct))} na Top Tênis Anápolis`, url };
+  try {
+    if (navigator.share) await navigator.share(data);
+    else { await navigator.clipboard.writeText(url); toast('Link copiado!'); }
+  } catch(e){}
+}
+
+function saveCart(){ localStorage.setItem('toptenis_cart', JSON.stringify(cart)); updateCartCount(); }
+function updateCartCount(){ $('cartCount').textContent = cart.reduce((a,i)=>a+i.qty,0); }
+
+function addModalToCart(){
+  if (!modalProduct || !modalSize) return;
+  const max = stockOf(modalProduct, modalSize);
+  const line = cart.find(i => i.id===modalProduct.id && i.size===modalSize);
+  if (line){
+    if (line.qty >= max) return toast(`Temos só ${max} ${max===1?'par':'pares'} no ${modalSize}.`);
+    line.qty++;
+  } else {
+    cart.push({ id:modalProduct.id, size:modalSize, qty:1, bairro:modalBairro });
+  }
+  saveCart(); closeModal($('productModal')); toast('Adicionado à sacola.');
+}
+
+function renderCart(){
+  const box = $('cartItemsContainer'), btn =$('checkoutCartBtn');
+  if (!cart.length){
+    box.innerHTML = `<p class="text-center text-zinc-400 text-xs py-8">Sua sacola está vazia.</p>`;
+    $('cartTotalPrice').textContent = money(0); btn.disabled = true; return;
+  }
+  btn.disabled = false;
+  let total = 0;
+  box.innerHTML = cart.map((item, idx) => {
+    const p = products.find(x=>x.id===item.id);
+    if (!p) return '';
+    const price = finalPrice(p) * item.qty; total += price;
+    return `
+      <div class="flex items-center justify-between bg-brand-black p-3 rounded-xl border border-brand-border gap-2">
+        <div class="flex items-center gap-3 min-w-0">
+          <img src="${esc(p.image)}" alt="" width="48" height="48" class="w-12 h-12 object-cover rounded-lg flex-shrink-0">
+          <div class="min-w-0">
+            <h4 class="text-xs font-bold text-white truncate">${esc(p.name)}</h4>
+            <span class="text-[10px] text-brand-yellow font-semibold">Tam ${item.size} • ${esc(item.bairro)}</span>
+            <div class="text-xs font-black text-white mt-0.5">${money(price)}</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 flex-shrink-0">
+          <button data-qty="-1" data-idx="${idx}" class="w-9 h-9 rounded-lg bg-zinc-800 text-white font-bold">−</button>
+          <span class="w-6 text-center text-xs font-bold">${item.qty}</span>
+          <button data-qty="1" data-idx="${idx}" class="w-9 h-9 rounded-lg bg-zinc-800 text-white font-bold">+</button>
+          <button data-remove="${idx}" class="w-9 h-9 rounded-lg text-zinc-400 hover:text-red-400" aria-label="Remover item">
+            <svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg>
+          </button>
+        </div>
+      </div>`;
+  }).join('');
+  $('cartTotalPrice').textContent = money(total);
+}
+
+function checkoutCart(){
+  if (!cart.length) return;
+  let total = 0;
+  const lines = cart.map(i => {
+    const p = products.find(x=>x.id===i.id); if (!p) return '';
+    const sub = finalPrice(p)*i.qty; total += sub;
+    return `• *${p.name}* — nº ${i.size} — ${i.qty}x — ${money(sub)}`;
+  }).filter(Boolean).join('\n');
+  const msg = `Olá, Top Tênis Anápolis! Quero fechar este pedido:\n\n${lines}\n\n*Total estimado: ${money(total)}*\nBairro para entrega: *${cart[0].bairro}* (Anápolis).`;
+  window.open(waLink(msg), '_blank');
+}
+
+function bindUI(){
+  let deb;
+  $('searchInput').addEventListener('input', e => {
+    clearTimeout(deb);
+    deb = setTimeout(()=>{ filters.q = e.target.value.trim(); applyFilters(); }, 180);
+  });
+  $('sortSelect').addEventListener('change', e => { filters.sort = e.target.value; applyFilters(); });$('showSoldOut').addEventListener('change', e => { filters.showSoldOut = e.target.checked; applyFilters(); });
+  $('resetFiltersBtn').addEventListener('click', resetFilters);$('emptyResetBtn').addEventListener('click', resetFilters);
+
+  $('sizeContainer').addEventListener('click', e => {
+    const b = e.target.closest('[data-size]'); if (!b || b.disabled) return;
+    filters.size = b.dataset.size === '' ? null : Number(b.dataset.size);
+    renderSizePills(); applyFilters();
+  });
+  $('categoryContainer').addEventListener('click', e => {
+    const b = e.target.closest('[data-cat]'); if (!b) return;
+    filters.cat = b.dataset.cat; renderCategoryPills(); applyFilters();
+  });
+  $('productsGrid').addEventListener('click', e => {
+    const b = e.target.closest('[data-open]'); if (!b) return;
+    openProduct(b.dataset.open);
+  });
+
+  $('cartBtn').addEventListener('click', () => { renderCart(); openModal($('cartModal')); });
+  $('checkoutCartBtn').addEventListener('click', checkoutCart);$('cartItemsContainer').addEventListener('click', e => {
+    const q = e.target.closest('[data-qty]'), r = e.target.closest('[data-remove]');
+    if (q){
+      const i = cart[Number(q.dataset.idx)], d = Number(q.dataset.qty);
+      const p = products.find(x=>x.id===i.id), max = p ? stockOf(p,i.size) : 0;
+      if (d>0 && i.qty>=max) return toast(`Temos só ${max} ${max===1?'par':'pares'} no ${i.size}.`);
+      i.qty += d;
+      if (i.qty<=0) cart.splice(Number(q.dataset.idx),1);
+      saveCart(); renderCart();
+    }
+    if (r){ cart.splice(Number(r.dataset.remove),1); saveCart(); renderCart(); }
+  });
+
+  $('logoLink').addEventListener('click', e => { e.preventDefault(); showShowcase(); });
+  $('admOpenBtn').addEventListener('click', showAdm);$('admBackBtn').addEventListener('click', showShowcase);
+  $('admExitBtn').addEventListener('click', showShowcase);$('admLoginForm').addEventListener('submit', doAdmLogin);
+
+  $('productForm').addEventListener('submit', submitProduct);
+  $('categoryForm').addEventListener('submit', addCategory);$('pIsPromo').addEventListener('change', togglePromo);
+  $('pPrice').addEventListener('input', updatePricePreview);$('pPromoPercent').addEventListener('input', updatePricePreview);
+  $('pImage').addEventListener('input', e =>$('pImagePreview').src = e.target.value);
+  $('pImageFile').addEventListener('change', handleImageFile);$('cancelEditBtn').addEventListener('click', resetProductForm);
+  $('applyPromoBtn').addEventListener('click', ()=>batchPromo(true));$('removePromoBtn').addEventListener('click', ()=>batchPromo(false));
+  $('exportBtn').addEventListener('click', exportBackup);$('importInput').addEventListener('change', importBackup);
+  $('admProductsTableBody').addEventListener('click', e => {     const ed = e.target.closest('[data-edit]'), del = e.target.closest('[data-del]'), pr = e.target.closest('[data-promo]');     if (ed) editProduct(ed.dataset.edit);     if (pr) togglePromoProduct(pr.dataset.promo);     if (del) deleteProduct(del.dataset.del);   });$('admCategoryList').addEventListener('click', e => {
+    const del = e.target.closest('[data-delcat]');
+    if (del) deleteCategory(del.dataset.delcat);
+  });
+}
+
+function showShowcase(){
+  $('admSection').classList.add('hidden');
+  $('showcaseSection').classList.remove('hidden');$('filterBar').classList.remove('hidden');
+  window.scrollTo({top:0});
+}
+function showAdm(){
+  $('showcaseSection').classList.add('hidden');
+  $('filterBar').classList.add('hidden');$('admSection').classList.remove('hidden');
+  window.scrollTo({top:0});
+  if (sessionStorage.getItem('toptenis_adm') === 'ok'){ $('admLogin').classList.add('hidden');$('admPanel').classList.remove('hidden'); renderAdm(); }
+  else { $('admLogin').classList.remove('hidden'); $('admPanel').classList.add('hidden');$('admPass').focus(); }
+}
+function doAdmLogin(e){
+  e.preventDefault();
+  if ($('admPass').value === ADM_PASSWORD){
+    sessionStorage.setItem('toptenis_adm','ok');
+    $('admLoginError').classList.add('hidden');$('admPass').value = '';
+    $('admLogin').classList.add('hidden');$('admPanel').classList.remove('hidden');
+    renderAdm();
+  } else {
+    $('admLoginError').classList.remove('hidden');
+  }
+}
+
+/* ---------------- LÓGICA DO PAINEL ADM ---------------- */
+function renderAdm(){
+  $('mTotalProducts').textContent = products.length;
+  $('mPromo').textContent = products.filter(p=>p.isPromo).length;
+  $('mStock').textContent = products.reduce((a,p)=>a+totalStock(p),0);$('mLow').textContent = products.filter(p=>{ const t=totalStock(p); return t>0 && t<=2; }).length;
+
+  $('admCategoryList').innerHTML = categories.map(c => `
+    <span class="inline-flex items-center gap-1.5 bg-brand-black border border-brand-border text-white text-xs px-2.5 py-1.5 rounded-lg">
+      ${esc(c)}<button data-delcat="${esc(c)}" class="text-zinc-400 hover:text-red-400 font-bold ml-1">×</button>
+    </span>`).join('');
+
+  const catOpts = categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+  $('pCategory').innerHTML = catOpts;
+  $('campaignCategorySelect').innerHTML = `<option value="Todas">Todas as categorias</option>` + catOpts;
+
+  renderAdmProductsTable();
+}
+
+function renderSizeStockInputs(){
+  $('sizeStockInputGrid').innerHTML = SIZES.map(s => `
+    <div>
+      <label for="stock_size_${s}" class="block text-[10px] text-zinc-400 text-center font-bold mb-0.5">${s}</label>
+      <input type="number" id="stock_size_${s}" min="0" value="0" class="w-full bg-brand-black border border-brand-border rounded-lg text-center py-2 text-xs text-white focus:border-brand-yellow">
+    </div>`).join('');
+}
+
+function renderAdmProductsTable(){
+  const body = $('admProductsTableBody');
+  if(!products.length){
+    body.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-zinc-500">Nenhum produto cadastrado.</td></tr>`;
+    return;
+  }
+  body.innerHTML = products.map(p => {
+    const stockInfo = SIZES.map(s => {
+      const q = stockOf(p, s);
+      return q > 0 ? `<span class="inline-block bg-zinc-800 px-1.5 py-0.5 rounded text-[10px] mr-1 mb-1 font-mono">${s}:${q}</span>` : '';
+    }).join('');
+
+    return `
+      <tr class="hover:bg-brand-cardHover/50 transition">
+        <td class="p-3 font-semibold text-white flex items-center gap-3">
+          <img src="${esc(p.image)}" alt="" class="w-9 h-9 object-cover rounded-lg border border-brand-border bg-brand-black">
+          <div>
+            <div class="text-xs font-bold">${esc(p.name)}</div>
+            <div class="text-[10px] text-zinc-400">${totalStock(p)} pares no total</div>
+          </div>
+        </td>
+        <td class="p-3 text-zinc-300 text-xs">${esc(p.category)}</td>
+        <td class="p-3 text-xs">
+          ${p.isPromo ? `<span class="line-through text-zinc-500 text-[10px] block">${money(p.price)}</span>` : ''}
+          <span class="font-bold text-brand-yellow">${money(finalPrice(p))}</span>
+        </td>
+        <td class="p-3">
+          <button data-promo="${esc(p.id)}" class="px-2 py-1 rounded text-[10px] font-extrabold ${p.isPromo ? 'bg-brand-yellow text-black' : 'bg-zinc-800 text-zinc-400'}">
+            ${p.isPromo ? `-${p.promoPercent}%` : 'Sem promo'}
+          </button>
+        </td>
+        <td class="p-3 max-w-[200px]">${stockInfo || '<span class="text-zinc-500 text-[10px]">Sem estoque</span>'}</td>
+        <td class="p-3 text-right">
+          <div class="inline-flex gap-1">
+            <button data-edit="${esc(p.id)}" class="p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200" title="Editar">
+              <svg class="icon" aria-hidden="true"><use href="#i-edit"/></svg>
+            </button>
+            <button data-del="${esc(p.id)}" class="p-2 rounded-lg bg-zinc-800 hover:bg-red-900/50 text-red-400" title="Excluir">
+              <svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg>
+            </button>
+          </div>
+        </td>
+      </tr>`;
+  }).join('');
+}
+
+function togglePromo(){
+  const isChecked = $('pIsPromo').checked;
+  $('pPromoPercent').disabled = !isChecked;
+  if (!isChecked) $('pPromoPercent').value = '';
+  updatePricePreview();
+}
+
+function updatePricePreview(){
+  const price = parseFloat($('pPrice').value) || 0;
+  const isPromo = $('pIsPromo').checked;
+  const percent = parseFloat($('pPromoPercent').value) || 0;
+  const finalP = (isPromo && percent > 0) ? price * (1 - percent/100) : price;
+  $('pFinalPricePreview').textContent = money(finalP);
+}
+
+function handleImageFile(e){
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = event => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const MAX_WIDTH = 900;
+      let width = img.width, height = img.height;
+      if (width > MAX_WIDTH) { height = Math.round((height * MAX_WIDTH) / width); width = MAX_WIDTH; }
+      canvas.width = width; canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+      $('pImage').value = dataUrl;
+      $('pImagePreview').src = dataUrl;
+    };
+    img.src = event.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function submitProduct(e){
+  e.preventDefault();
+  const id = $('pId').value || String(Date.now());
+  const name = $('pName').value.trim();
+  const category = $('pCategory').value;
+  const price = parseFloat($('pPrice').value) || 0;
+  const description = $('pDescription').value.trim();
+  const isPromo = $('pIsPromo').checked;
+  const promoPercent = isPromo ? (parseFloat($('pPromoPercent').value) || 0) : 0;
+  const image = $('pImage').value.trim() || 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80';
+
+  const sizesStock = {};
+  SIZES.forEach(s => {
+    sizesStock[s] = parseInt($(`stock_size_${s}`).value) || 0;
+  });
+
+  const existingIdx = products.findIndex(p => p.id === id);
+  const newProduct = {
+    id, name, category, price, description, isPromo, promoPercent, image, sizesStock,
+    createdAt: existingIdx >= 0 ? products[existingIdx].createdAt : Date.now()
+  };
+
+  if (existingIdx >= 0) products[existingIdx] = newProduct;
+  else products.unshift(newProduct);
+
+  await Store.setProducts(products);
+  resetProductForm();
+  renderAdm();
+  applyFilters();
+  toast(existingIdx >= 0 ? 'Produto atualizado!' : 'Produto cadastrado!');
+}
+
+function editProduct(id){
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  editingId = id;
+  $('pId').value = p.id;
+  $('pName').value = p.name;
+  $('pCategory').value = p.category;
+  $('pPrice').value = p.price;
+  $('pDescription').value = p.description \vert{}\vert{} '';$('pIsPromo').checked = p.isPromo;
+  $('pPromoPercent').disabled = !p.isPromo;
+  $('pPromoPercent').value = p.promoPercent \vert{}\vert{} '';$('pImage').value = p.image;
+  $('pImagePreview').src = p.image;
+
+  SIZES.forEach(s => {
+    $(`stock_size_${s}`).value = stockOf(p, s);
+  });
+
+  $('formTitle').textContent = 'Editar produto';$('submitProductBtn').textContent = 'Atualizar alterações';
+  $('cancelEditBtn').classList.remove('hidden');
+  updatePricePreview();
+  window.scrollTo({ top: $('productForm').offsetTop - 100, behavior: 'smooth' });
+}
+
+function resetProductForm(){
+  editingId = null;
+  $('pId').value = '';$('productForm').reset();
+  $('pImagePreview').src = '';$('pIsPromo').checked = false;
+  $('pPromoPercent').disabled = true;
+  $('formTitle').textContent = 'Cadastrar novo produto';
+  $('submitProductBtn').textContent = 'Salvar e adicionar ao estoque';$('cancelEditBtn').classList.add('hidden');
+  SIZES.forEach(s => { $(`stock_size_${s}`).value = 0; });
+  updatePricePreview();
+}
+
+async function togglePromoProduct(id){
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  p.isPromo = !p.isPromo;
+  if (p.isPromo && !p.promoPercent) p.promoPercent = 10;
+  await Store.setProducts(products);
+  renderAdm(); applyFilters();
+  toast(p.isPromo ? 'Promoção ativada' : 'Promoção desativada');
+}
+
+async function deleteProduct(id){
+  if (!confirm('Deseja realmente remover este produto do catálogo?')) return;
+  products = products.filter(p => p.id !== id);
+  await Store.setProducts(products);
+  renderAdm(); applyFilters();
+  toast('Produto removido.');
+}
+
+async function addCategory(e){
+  e.preventDefault();
+  const cat = $('newCategoryInput').value.trim();
+  if (!cat || categories.includes(cat)) return;
+  categories.push(cat);
+  await Store.setCategories(categories);
+  $('newCategoryInput').value = '';
+  renderAdm(); renderCategoryPills();
+  toast('Categoria adicionada!');
+}
+
+async function deleteCategory(cat){
+  if (!confirm(`Remover a categoria "${cat}"?`)) return;
+  categories = categories.filter(c => c !== cat);
+  await Store.setCategories(categories);
+  renderAdm(); renderCategoryPills();
+  toast('Categoria removida.');
+}
+
+async function batchPromo(apply){
+  const cat = $('campaignCategorySelect').value;
+  const pct = parseInt($('campaignDiscountInput').value) || 0;
+  if (apply && (!pct || pct <= 0)) return alert('Informe uma porcentagem válida para o desconto.');
+
+  let count = 0;
+  products.forEach(p => {
+    if (cat === 'Todas' || p.category === cat) {
+      p.isPromo = apply;
+      if (apply) p.promoPercent = pct;
+      count++;
+    }
+  });
+
+  await Store.setProducts(products);
+  renderAdm(); applyFilters();
+  toast(apply ? `Promoção de ${pct}% aplicada em ${count} produtos.` : `Promoções removidas de ${count} produtos.`);
+}
+
+function exportBackup(){
+  const data = JSON.stringify({ products, categories, date: new Date().toISOString() }, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `toptenis_backup_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importBackup(e){
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = async event => {
+    try {
+      const json = JSON.parse(event.target.result);
+      if (Array.isArray(json.products) && Array.isArray(json.categories)) {
+        products = json.products;
+        categories = json.categories;
+        await Store.setProducts(products);
+        await Store.setCategories(categories);
+        renderAdm(); renderCategoryPills(); applyFilters();
+        toast('Backup restaurado com sucesso!');
+      } else { alert('Arquivo de backup inválido.'); }
+    } catch(err) { alert('Erro ao ler o arquivo JSON.'); }
+  };
+  reader.readAsText(file);
+}
+</script>
+</body>
+</html>
